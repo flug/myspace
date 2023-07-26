@@ -1,0 +1,99 @@
+[bar/default]
+width = 100%
+height = 40
+radius = 0.0
+fixed-center = true
+
+background = #1d1f21
+foreground = #c5c8c6
+
+module-margin-left = 1
+module-margin-right = 1
+
+#font-0 = "fixed:pixelsize=10;1"
+font-0 = "fixed:pixelsize=10;1"
+#font-1 = "unifont:fontformat=truetype:size=8:antialias=false;0"
+#font-2 = "siji:pixelsize=10;1"
+font-1 = "Font Awesome 6 Free:style=Solid:size=10;1"
+
+modules-left = i3
+modules-center = date
+modules-right = menu
+
+
+[module/date]
+type = internal/date
+interval = 1
+date = %H:%M:%S %d-%m-%Y 
+date-alt = %A, %d %B %Y
+time = "%H:%M"
+format-prefix-foreground = #eceff1
+format-background = ${colors.primary}
+format = " <label>"
+label = %date%
+label-padding = 4
+
+[module/i3]
+type = internal/i3
+format = "<label-state> <label-mode>"
+label-focused-background = ${colors.primary}
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 2
+
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = 2
+
+label-visible-background = ${colors.secondary}
+label-visible-foreground = ${colors.foreground}
+label-visible-padding = 2
+
+label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.foreground}
+label-urgent-padding = 2
+label-focused-margin = 2
+
+label-unfocused-margin = 2
+
+label-visible-margin = 2
+
+label-urgent-margin = 2
+
+label-focused-border-size = 0
+label-unfocused-border-size = 0
+label-visible-border-size = 0
+label-urgent-border-size = 0
+
+[module/menu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = #ffffff
+label-open-padding = 2
+
+label-separator = |
+
+label-close = X
+label-close-foreground = ${colors.primary}
+
+menu-0-0 = Hibernate
+menu-0-0-exec = systemctl suspend
+menu-0-0-foreground = #ffffff
+
+menu-0-1 = Logout
+menu-0-1-exec = i3-msg exit
+menu-0-1-foreground = #ffffff
+
+menu-0-2 = Shutdown
+menu-0-2-exec = systemctl poweroff
+menu-0-2-foreground = #ffffff
+
+
+
+[colors]
+primary = #BB2929
+background = #BB2929
+foreground = #ffffff
+alert = #671717
