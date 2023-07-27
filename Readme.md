@@ -7,4 +7,5 @@
 	i3
 	vim
 	ranger
+	alacritty
 
