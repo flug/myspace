@@ -1,7 +1,7 @@
-#My Space of work 
+# My Space of work 
 
 
-#requirement : 
+## requirement : 
 
 	lightDM
 	i3
