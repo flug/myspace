@@ -31,18 +31,19 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#set $refresh_i3status killall -SIGUSR1 i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym $mod+question exec --no-startup-id rofi -e "$(grep 'bindsym' ~/.config/i3/config | cut -d ' ' -f2-)"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty 
+bindsym $mod+p exec /opt/PhpStorm/bin/phpstorm.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -107,9 +108,9 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
+set $ws1 "1: Terminal"
+set $ws2 "2: Firefox"
+set $ws3 "3: PhpStorm"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -141,6 +142,12 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+gaps inner 10
+gaps outer 5
+workspace 3 gaps inner 0
+workspace 3 gaps outer 0
+smart_gaps inverse_outer
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -194,3 +201,19 @@ bindsym $mod+r mode "resize"
 ########	  }
 ########}
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+client.focused          #992372 #BB2929 #FFFFFF #992372   #992372
+client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+## rules 
+assign [class="^Firefox$"] $ws2
+assign [class="^PhpStorm$"] $ws3
+
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/myspace/i3/workspace_1.json'"
+exec --no-startup-id "i3-msg 'workspace 1; exec alacritty'"
+exec --no-startup-id "i3-msg 'workspace 1; exec vpn-maxicoffee'"
+exec --no-startup-id "i3-msg 'workspace 1; exec alacritty'"
+
+

@@ -16,9 +16,9 @@ font-0 = "fixed:pixelsize=10;1"
 #font-2 = "siji:pixelsize=10;1"
 font-1 = "Font Awesome 6 Free:style=Solid:size=10;1"
 
-modules-left = i3 
+modules-left = i3 step
 modules-center = date
-modules-right = launch-phpstorm menu
+modules-right = keyboard-layout step launch-phpstorm menu
 
 
 [module/date]
@@ -96,6 +96,32 @@ menu-0-2 = Shutdown
 menu-0-2-exec = systemctl poweroff
 menu-0-2-foreground = #ffffff
 
+[module/step]
+type=custom/text
+content="| "
+
+[module/shell]
+type = custom/script
+exec = echo "Type your command: "
+tail = true
+click-left = echo -n "Type your command: " > $HOME/.config/polybar/shell-input
+click-right = bash $HOME/.config/polybar/shell-input
+
+[module/active-window]
+type = internal/xwindow
+format = <label>
+label = %title:0:30:...%
+label-foreground = #ffffff
+label-background = #BB2929
+label-font = 2
+label-padding = 10
+label-align = left
+
+[module/keyboard-layout]
+type = custom/script
+exec = setxkbmap -query | awk '/layout/{print $2}'
+click-left = $HOME/.config/polybar/switch_layout.sh && polybar-msg cmd restart
+interval = 5
 
 
 [colors]
