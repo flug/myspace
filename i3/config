@@ -215,5 +215,5 @@ exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/myspace/i3/workspace_
 exec --no-startup-id "i3-msg 'workspace 1; exec alacritty'"
 exec --no-startup-id "i3-msg 'workspace 1; exec vpn-maxicoffee'"
 exec --no-startup-id "i3-msg 'workspace 1; exec alacritty'"
-
+bindsym --whole-window --release button2 kill
 

@@ -1,17 +1,26 @@
 [bar/default]
+pseudo-transparency = false
+wm-restack = i3
+
+
 width = 100%
 height = 30
 radius = 0.0
 fixed-center = true
+offset-x = 0.78%
+offset-y = 0.5%
+line-size = 3
+separator = " "
+separator-foreground = ${colors.foreground1}
 
-background = #1d1f21
-foreground = #c5c8c6
+background = ${colors.background}
+foreground = ${colors.foreground1}
 
 module-margin-left = 0
 module-margin-right = 0
 
 #font-0 = "fixed:pixelsize=10;1"
-font-0 = "fixed:pixelsize=10;1"
+font-0 = "BlexMono Nerd Font:style=Bold:size=14;2"
 #font-1 = "unifont:fontformat=truetype:size=8:antialias=false;0"
 #font-2 = "siji:pixelsize=10;1"
 font-1 = "Font Awesome 6 Free:style=Solid:size=10;1"
@@ -20,55 +29,103 @@ modules-left = i3 step
 modules-center = date
 modules-right = keyboard-layout step launch-phpstorm menu
 
+tray-position = none
+tray-background = inherit
+tray-padding = 10
+cursor-click = pointer
+
 
 [module/date]
 type = internal/date
 interval = 1.0
-time = %A / %d %b %Y / %H:%M:%S
+time = %H:%M:%S
 ; time-alt = %Y-%m-%d
-format = <label>
-format-background = ${colors.dark0_hard} 
-format-foreground = ${colors.light0_soft}
+
+format-prefix-foreground = ${colors.blue}
+format-prefix-padding-right = 1
+format-background = inherit
+format-prefix-overline = ${colors.blue}
+format-prefix-underline = ${colors.blue}
 format-padding = 1
+format-prefix = "󱑂 "
 label = %time%
+
+format-foreground = ${colors.foreground}
+format-overline = ${colors.blue}
+format-underline = ${colors.blue}
 
 [module/launch-phpstorm]
 type = custom/script
-exec = echo ""
+exec = echo " PhpStorm"
 click-left = /opt/PhpStorm/bin/phpstorm.sh &
 format = <label>
+format-overline = ${colors.orange}
+format-underline = ${colors.orange}
+format-padding = 1
 
 
 [module/i3]
 type = internal/i3
-format = "<label-state> <label-mode>"
-label-focused-background = ${colors.primary}
+enable-scroll = false
+show-urgent = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+fuzzy-match = true
+pin-workspaces = true
+
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 10;10
+
+format-prefix = " "
+format-prefix-background = inherit
+format-prefix-padding = 1
+format-prefix-foreground = ${colors.primary}
+format-prefix-overline = ${colors.primary}
+format-prefix-underline = ${colors.primary}
+
+label-focused = %icon%
 label-focused-foreground = ${colors.foreground}
-label-focused-padding = 2
+label-focused-background = inherit
+label-focused-padding = 1
+label-focused-padding-right = 1
+label-focused-overline = ${colors.primary}
+label-focused-underline = ${colors.primary}
 
-label-unfocused-background = ${colors.unfocused}
-label-unfocused-foreground = ${colors.foreground}
-label-unfocused-padding = 2
+label-unfocused = %icon%
+label-unfocused-padding = 1
+label-unfocused-padding-right = 1
+label-unfocused-foreground = ${colors.foreground1}
+label-unfocused-background = inherit
+label-unfocused-overline = ${colors.primary}
+label-unfocused-underline = ${colors.primary}
 
-label-visible-background = ${colors.secondary}
+label-visible = %icon%
 label-visible-foreground = ${colors.foreground}
-label-visible-padding = 2
+label-visible-background = inherit
+label-visible-padding = 1
+label-visible-padding-right = 1
+label-visible-overline = ${colors.primary}
+label-visible-underline = ${colors.primary}
 
-label-urgent-background = ${colors.alert}
-label-urgent-foreground = ${colors.foreground}
-label-urgent-padding = 2
-label-focused-margin = 2
 
-label-unfocused-margin = 2
+label-urgent = %icon%
+label-urgent-foreground = ${colors.primary}
+label-urgent-background = inherit
+label-urgent-padding = 1
+label-urgent-padding-right = 1
+label-urgent-overline = ${colors.primary}
+label-urgent-underline = ${colors.primary}
 
-label-visible-margin = 2
 
-label-urgent-margin = 2
-
-label-focused-border-size = 0
-label-unfocused-border-size = 0
-label-visible-border-size = 0
-label-urgent-border-size = 0
 
 [module/menu]
 type = custom/menu
@@ -122,11 +179,18 @@ type = custom/script
 exec = setxkbmap -query | awk '/layout/{print $2}'
 click-left = $HOME/.config/polybar/switch_layout.sh && polybar-msg cmd restart
 interval = 5
+format-foreground = ${colors.foreground}
+format-overline = ${colors.gray-dark}
+format-underline = ${colors.gray-dark}
 
 
 [colors]
 primary = #BB2929
-background = #BB2929
+background = #1d1f21
+foreground1 = #c5c8c6
 foreground = #ffffff
 alert = #671717
 unfocused = #333333
+blue = #087787
+orange= #e95405
+gray-dark = #4c4c4c
