@@ -27,7 +27,7 @@ font-1 = "Font Awesome 6 Free:style=Solid:size=10;1"
 
 modules-left = i3 step
 modules-center = date
-modules-right = keyboard-layout step launch-phpstorm menu
+modules-right = nxserver-restart step keyboard-layout step launch-phpstorm menu
 
 tray-position = none
 tray-background = inherit
@@ -56,7 +56,7 @@ format-underline = ${colors.blue}
 
 [module/launch-phpstorm]
 type = custom/script
-exec = echo " PhpStorm"
+exec = echo " PHPStorm"
 click-left = /opt/PhpStorm/bin/phpstorm.sh &
 format = <label>
 format-overline = ${colors.orange}
@@ -164,6 +164,13 @@ tail = true
 click-left = echo -n "Type your command: " > $HOME/.config/polybar/shell-input
 click-right = bash $HOME/.config/polybar/shell-input
 
+[module/nxserver-restart]
+type = custom/script
+exec = echo "  NoMachine "
+click-left = sudo service nxserver restart
+format-overline = ${colors.no-machine}
+format-underline = ${colors.no-machine}
+
 [module/active-window]
 type = internal/xwindow
 format = <label>
@@ -194,3 +201,4 @@ unfocused = #333333
 blue = #087787
 orange= #e95405
 gray-dark = #4c4c4c
+no-machine= #FF033E
