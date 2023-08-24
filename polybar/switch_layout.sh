@@ -8,7 +8,10 @@ if [ "$current_layout" == "us" ]; then
     setxkbmap fr
     echo ""
 else
-    setxkbmap us
+    #setxkbmap us
+#    setxkbmap us -variant intl
+    setxkbmap us -variant altgr-intl
+
     echo ""
 fi
 
